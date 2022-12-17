@@ -1,0 +1,37 @@
+<p *ngIf="cartService.getSize()==0" class="empty-cart-message">Your cart is empty.</p>
+<div style="display: flex; flex-direction: row;">
+    <form *ngIf="cartService.getSize()!=0" #form="ngForm" (ngSubmit)="placeOrder()">
+        <label>Full name</label>
+        <input type="text" required name="name" placeholder="John Doe" minlength="3" [(ngModel)]="name">
+        <label>Address</label>
+        <input type="text" required name="address" placeholder="Building, Street, Town/City" [(ngModel)]="address">
+        <label>Credit card number</label>
+        <input type="text" autocomplete="cc-number" inputmode="numeric" name="card" placeholder="16-digit number"
+            minlength="16" maxlength="16" required [(ngModel)]="card">
+        <p style="color: #999999;">We'll never share your payment deatils with anyone else.</p>
+        <button type="submit" [disabled]="form.invalid" routerLink="/confirmation"
+            style="height: 40px; margin-left: 5%;">Place
+            order</button>
+    </form>
+    <div *ngIf="cartService.getSize()!=0" style="margin-bottom: 2%;">
+        <p style="color: aliceblue; font-size: x-large; padding: 2%; margin-top: 1%;">Total: ${{ total }}</p>
+        <mat-card class="cart-item cart-item-details"
+            style="margin: 1%; width: 200px; height: 300px; display:inline-block; border-radius: 6px;"
+            *ngFor="let product of products">
+            <div [routerLink]="'/products/'+product.id" style="cursor: pointer;">
+                <mat-card-header>
+                    <mat-card-title>{{ product.name }}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image [src]="product.url" style="width: 200px">
+            </div>
+            <mat-card-footer>
+                <p> ${{ product.price }}</p>
+                <button (click)="cartService.removeFromCart(product); updateCart()">Delete</button>
+                <select [ngModel]="cartService.getQuantity(product)"
+                    (ngModelChange)="cartService.updateQuantity(product, $event); updateCart()" class="number-input">
+                    <option *ngFor="let q of cartService.quantities" [ngValue]="q">{{ q }}</option>
+                </select>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

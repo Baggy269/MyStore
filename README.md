@@ -2,26 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
 
-## Development server
+## Installation and launch
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm install` to install the required dependencies then run `ng serve` to launch the application on `http://localhost:4200/`.
 
-## Code scaffolding
+## Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The app starts on the homepage (products-list) component where the products are fetched and presented as a series of (product-item) components. Each item can be added to the cart if not already in it or removed/updated if it is. On the top is a fixed header component that is used to navigate to the home component by clicking on 'My Store' or the checkout component by clicking on 'Cart'. The checkout component displays the items in the cart (stored in the local storage) and the total and has a form for entering the name, address and card no. If the input data is valid, the user can place the order which redirects to a confirmation page and clears the cart.

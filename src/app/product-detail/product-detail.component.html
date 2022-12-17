@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3 xs-8">
+            <div class="card" style="background-color: rgba(0, 0, 0, 0.75); color:white; padding: 2%;">
+                <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
+                    <div class="img-square-wrapper" style="padding-right: 2%;">
+                        <img class="card-img-top" style="width: 200px; height:300px" [src]="product.url"
+                            [alt]="product.name + ' image'">
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title">{{ product.name }}</h1>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p>${{ product.price }}</p>
+                        <button *ngIf="cartService.getQuantity(product)==0" (click)="cartService.addToCart(product)">Add
+                            to cart</button>
+                        <select *ngIf="cartService.getQuantity(product)!=0" [ngModel]="cartService.getQuantity(product)"
+                            (ngModelChange)="cartService.updateQuantity(product, $event)">
+                            <option *ngFor="let q of cartService.quantities" [ngValue]="q">{{ q }}</option>
+                        </select>
+                        <button *ngIf="cartService.getQuantity(product)!=0"
+                            (click)="cartService.removeFromCart(product)">Remove</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
