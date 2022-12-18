@@ -15,6 +15,10 @@ input {
     padding: 4px;
 }
 
+.validation-message {
+    color: red;
+}
+
 .form-margin {
     margin-bottom: 12px;
 }

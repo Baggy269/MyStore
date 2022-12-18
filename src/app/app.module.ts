@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { FormsModule } from '@angular/forms';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ProductItemComponent } from './product-list/product-item/product-item.c
     BrowserAnimationsModule,
     MatCardModule,
     FormsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,12 +2,16 @@
 <div style="display: flex; flex-direction: row;">
     <form *ngIf="cartService.getSize()!=0" #form="ngForm" (ngSubmit)="placeOrder()">
         <label>Full name</label>
-        <input type="text" required name="name" placeholder="John Doe" minlength="3" [(ngModel)]="name">
+        <input type="text" required name="name" placeholder="John Doe" minlength="3" [(ngModel)]="name" #n="ngModel">
+        <span *ngIf="n.invalid && (n.touched || n.dirty)" class="validation-message">Min length 3</span>
         <label>Address</label>
-        <input type="text" required name="address" placeholder="Building, Street, Town/City" [(ngModel)]="address">
+        <input type="text" required name="address" placeholder="Building, Street, Town/City" minlength="6"
+            [(ngModel)]="address" #a="ngModel">
+        <span *ngIf="a.invalid && (a.touched || a.dirty)" class="validation-message">Min length 6</span>
         <label>Credit card number</label>
         <input type="text" autocomplete="cc-number" inputmode="numeric" name="card" placeholder="16-digit number"
-            minlength="16" maxlength="16" required [(ngModel)]="card">
+            minlength="16" maxlength="16" required [(ngModel)]="card" #cc="ngModel">
+        <span *ngIf="cc.invalid && (cc.touched || cc.dirty)" class="validation-message">Invalid card number</span>
         <p style="color: #999999;">We'll never share your payment deatils with anyone else.</p>
         <button type="submit" [disabled]="form.invalid" routerLink="/confirmation"
             style="height: 40px; margin-left: 5%;">Place
